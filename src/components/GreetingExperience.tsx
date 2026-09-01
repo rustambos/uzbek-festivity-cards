@@ -114,31 +114,40 @@ export function GreetingExperience({
             {t.galleryTitle}
           </h2>
           <p className="mt-3 text-center text-sm text-muted-foreground">{t.gallerySub}</p>
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            dir="ltr"
+            className="gallery-scroll mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+          >
             {GALLERY.map((img, i) => (
               <figure
                 key={img.url}
-                className={`group overflow-hidden rounded-2xl border border-gold/25 bg-card shadow-elegant ${
-                  i === 0 ? "sm:col-span-2 lg:col-span-2" : ""
-                }`}
+                className="group w-[85%] shrink-0 snap-center overflow-hidden rounded-2xl border border-gold/25 bg-card shadow-elegant sm:w-[60%] lg:w-[42%]"
               >
                 <img
                   src={img.url}
                   alt={`${t.galleryTitle} ${i + 1}`}
                   loading="lazy"
-                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-64"
+                  draggable={false}
+                  className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-80"
                 />
               </figure>
             ))}
           </div>
+          <p className="mt-2 text-center text-xs text-muted-foreground/70">← →</p>
         </div>
       </section>
 
       {/* Brand + edit */}
       <div className="fixed bottom-4 left-4 z-40">
-        <span className="glass-panel flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold tracking-tight text-uz-blue">
+        <a
+          href="https://webinvite-six.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WebInvite"
+          className="glass-panel flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold tracking-tight text-uz-blue transition-transform hover:scale-110"
+        >
           WI
-        </span>
+        </a>
       </div>
       <PersonalizeButton t={t} />
     </div>
