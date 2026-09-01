@@ -283,3 +283,25 @@
     letter-spacing: -0.01em;
   }
 }
+
+@utility gallery-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 14px color-mix(in oklab, var(--gold) 0%, transparent);
+  }
+}
+
+@utility animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-in-out infinite;
+}
