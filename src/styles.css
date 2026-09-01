@@ -59,7 +59,57 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-uz-blue: var(--uz-blue);
+  --color-uz-green: var(--uz-green);
+  --color-uz-red: var(--uz-red);
+  --color-gold: var(--gold);
+  --color-festive-white: var(--festive-white);
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-cover-in: cover-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float-down: float-down linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes cover-in {
+    from {
+      opacity: 0;
+      transform: scale(1.12);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float-down {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -10vh, 0) rotate(0deg);
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      transform: translate3d(var(--drift, 0px), 110vh, 0) rotate(540deg);
+    }
+  }
 }
+
 
 :root {
   --radius: 0.625rem;
@@ -140,5 +190,96 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+/* ── National festive design system ─────────────────────────── */
+:root {
+  --uz-blue: oklch(0.52 0.15 245);
+  --uz-green: oklch(0.62 0.16 150);
+  --uz-red: oklch(0.58 0.2 25);
+  --gold: oklch(0.75 0.11 82);
+  --festive-white: oklch(0.99 0.005 90);
+
+  --background: oklch(0.985 0.008 90);
+  --foreground: oklch(0.24 0.03 250);
+  --card: oklch(0.995 0.004 90);
+  --card-foreground: oklch(0.24 0.03 250);
+  --popover: oklch(0.995 0.004 90);
+  --popover-foreground: oklch(0.24 0.03 250);
+  --primary: oklch(0.52 0.15 245);
+  --primary-foreground: oklch(0.99 0.005 90);
+  --secondary: oklch(0.95 0.02 150);
+  --secondary-foreground: oklch(0.3 0.05 160);
+  --muted: oklch(0.955 0.012 90);
+  --muted-foreground: oklch(0.5 0.03 250);
+  --accent: oklch(0.93 0.05 82);
+  --accent-foreground: oklch(0.3 0.05 82);
+  --border: oklch(0.9 0.02 90);
+  --input: oklch(0.9 0.02 90);
+  --ring: oklch(0.52 0.15 245);
+  --radius: 0.9rem;
+
+  --gradient-national: linear-gradient(
+    120deg,
+    var(--uz-blue) 0%,
+    oklch(0.6 0.13 200) 50%,
+    var(--uz-green) 100%
+  );
+  --gradient-veil: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--festive-white) 25%, transparent) 0%,
+    color-mix(in oklab, var(--festive-white) 55%, transparent) 55%,
+    color-mix(in oklab, var(--festive-white) 88%, transparent) 100%
+  );
+  --shadow-elegant: 0 18px 50px -18px color-mix(in oklab, var(--uz-blue) 45%, transparent);
+}
+
+@theme inline {
+  --shadow-elegant: var(--shadow-elegant);
+}
+
+@utility bg-gradient-national {
+  background-image: var(--gradient-national);
+}
+
+@utility bg-gradient-veil {
+  background-image: var(--gradient-veil);
+}
+
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+@utility glass-panel {
+  background-color: color-mix(in oklab, var(--festive-white) 62%, transparent);
+  backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
+  box-shadow: var(--shadow-elegant);
+}
+
+@utility star-shape {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 }
