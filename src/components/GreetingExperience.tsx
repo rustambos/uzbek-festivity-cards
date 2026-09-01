@@ -89,7 +89,7 @@ export function GreetingExperience({
             1991 — 2026
           </p>
           <h1 className="mt-4 text-center font-display text-3xl leading-tight text-foreground sm:text-4xl">
-            {t.heroTitle(recipient)} <span className="align-middle">🇺🇿</span>
+            {t.heroTitle(recipient)}
           </h1>
           <div className="mx-auto mt-6 h-px w-24 bg-gold/70" />
           <div className="mt-6 space-y-4 text-center text-base leading-relaxed text-foreground/90 sm:text-lg">
