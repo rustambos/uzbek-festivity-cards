@@ -170,17 +170,24 @@ function Cover({ t, onOpen }: { t: (typeof CONTENT)["uz"]; onOpen: () => void })
       <div className="absolute inset-0 bg-gradient-veil" />
       <Particles count={22} />
       <div className="relative flex flex-col items-center px-6 text-center animate-rise">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold">
+        <div className="glass-panel pointer-events-none absolute -inset-x-4 -inset-y-8 rounded-[3rem] border border-gold/30 sm:-inset-x-12 sm:-inset-y-10" />
+        <span className="absolute -top-14 h-10 w-10 animate-pulse text-3xl text-gold drop-shadow-[0_0_12px_hsl(var(--gold)/0.8)]">
+          ✦
+        </span>
+        <p className="relative text-xs font-semibold uppercase tracking-[0.4em] text-gold">
           {t.coverKicker}
         </p>
-        <h1 className="mt-4 max-w-xl font-display text-3xl leading-tight text-foreground sm:text-5xl">
+        <div className="relative mx-auto mt-4 h-px w-16 bg-gold/60" />
+        <h1 className="relative mt-4 max-w-xl font-display text-3xl leading-tight text-foreground drop-shadow-sm sm:text-5xl">
           {t.coverTitle}
         </h1>
-        <p className="mt-3 font-display text-xl text-uz-blue sm:text-2xl">{t.coverSub}</p>
+        <p className="relative mt-3 font-display text-xl italic text-uz-blue sm:text-2xl">
+          {t.coverSub}
+        </p>
         <Button
           variant="festive"
           size="lg"
-          className="mt-9"
+          className="relative mt-9 animate-pulse-ring"
           onClick={() => {
             setLeaving(true);
             setTimeout(onOpen, 700);
