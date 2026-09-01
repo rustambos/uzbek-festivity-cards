@@ -41,8 +41,9 @@ function GreetingBySlug() {
 
   return (
     <GreetingExperience
-      recipientName={data?.recipient_name}
-      senderName={data?.sender_name}
+      recipientName={data?.recipient_name ?? null}
+      senderName={data?.sender_name ?? null}
     />
+
   );
 }
