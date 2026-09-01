@@ -89,7 +89,7 @@ export function GreetingExperience({
             1991 — 2026
           </p>
           <h1 className="mt-4 text-center font-display text-3xl leading-tight text-foreground sm:text-4xl">
-            {t.heroTitle(recipient)} <span className="align-middle">🇺🇿</span>
+            {t.heroTitle(recipient)}
           </h1>
           <div className="mx-auto mt-6 h-px w-24 bg-gold/70" />
           <div className="mt-6 space-y-4 text-center text-base leading-relaxed text-foreground/90 sm:text-lg">
@@ -114,31 +114,40 @@ export function GreetingExperience({
             {t.galleryTitle}
           </h2>
           <p className="mt-3 text-center text-sm text-muted-foreground">{t.gallerySub}</p>
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            dir="ltr"
+            className="gallery-scroll mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+          >
             {GALLERY.map((img, i) => (
               <figure
                 key={img.url}
-                className={`group overflow-hidden rounded-2xl border border-gold/25 bg-card shadow-elegant ${
-                  i === 0 ? "sm:col-span-2 lg:col-span-2" : ""
-                }`}
+                className="group w-[85%] shrink-0 snap-center overflow-hidden rounded-2xl border border-gold/25 bg-card shadow-elegant sm:w-[60%] lg:w-[42%]"
               >
                 <img
                   src={img.url}
                   alt={`${t.galleryTitle} ${i + 1}`}
                   loading="lazy"
-                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-64"
+                  draggable={false}
+                  className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-80"
                 />
               </figure>
             ))}
           </div>
+          <p className="mt-2 text-center text-xs text-muted-foreground/70">← →</p>
         </div>
       </section>
 
       {/* Brand + edit */}
       <div className="fixed bottom-4 left-4 z-40">
-        <span className="glass-panel flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold tracking-tight text-uz-blue">
+        <a
+          href="https://webinvite-six.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WebInvite"
+          className="glass-panel flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold tracking-tight text-uz-blue transition-transform hover:scale-110"
+        >
           WI
-        </span>
+        </a>
       </div>
       <PersonalizeButton t={t} />
     </div>
@@ -161,17 +170,24 @@ function Cover({ t, onOpen }: { t: (typeof CONTENT)["uz"]; onOpen: () => void })
       <div className="absolute inset-0 bg-gradient-veil" />
       <Particles count={22} />
       <div className="relative flex flex-col items-center px-6 text-center animate-rise">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold">
+        <div className="glass-panel pointer-events-none absolute -inset-x-4 -inset-y-8 rounded-[3rem] border border-gold/30 sm:-inset-x-12 sm:-inset-y-10" />
+        <span className="absolute -top-14 h-10 w-10 animate-pulse text-3xl text-gold drop-shadow-[0_0_12px_hsl(var(--gold)/0.8)]">
+          ✦
+        </span>
+        <p className="relative text-xs font-semibold uppercase tracking-[0.4em] text-gold">
           {t.coverKicker}
         </p>
-        <h1 className="mt-4 max-w-xl font-display text-3xl leading-tight text-foreground sm:text-5xl">
+        <div className="relative mx-auto mt-4 h-px w-16 bg-gold/60" />
+        <h1 className="relative mt-4 max-w-xl font-display text-3xl leading-tight text-foreground drop-shadow-sm sm:text-5xl">
           {t.coverTitle}
         </h1>
-        <p className="mt-3 font-display text-xl text-uz-blue sm:text-2xl">{t.coverSub}</p>
+        <p className="relative mt-3 font-display text-xl italic text-uz-blue sm:text-2xl">
+          {t.coverSub}
+        </p>
         <Button
           variant="festive"
           size="lg"
-          className="mt-9"
+          className="relative mt-9 animate-pulse-ring"
           onClick={() => {
             setLeaving(true);
             setTimeout(onOpen, 700);
